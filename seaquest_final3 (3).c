@@ -13,7 +13,7 @@
     static void dormir_ms(int ms) { Sleep(ms); }
     static void tocar_tom(int frequencia, int duracao_ms) {
         if (frequencia > 0 && duracao_ms > 0) {
-            Beep((DWORD) frequencia, (DWORD) duracao_ms);
+            Beep(frequencia, duracao_ms);
         }
     }
     static int tecla_disponivel(void) { return _kbhit(); }
@@ -22,10 +22,8 @@
 #else
     #include <unistd.h>
     static void tocar_tom(int frequencia, int duracao_ms) {
-        if (frequencia > 0 && duracao_ms > 0) {
-            printf("\a");
-            fflush(stdout);
-        }
+        (void)frequencia;
+        (void)duracao_ms;
     }
     #include <termios.h>
     #include <fcntl.h>
